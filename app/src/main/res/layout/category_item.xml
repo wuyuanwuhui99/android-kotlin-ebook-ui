@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <com.player.ebook.view.RoundImageView
+        android:id="@+id/category_item_img"
+        app:radius="10dp"
+        android:background="@drawable/border"
+        android:layout_width="wrap_content"
+        android:layout_height="180dp"/>
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/category_item_name"
+        android:ellipsize = "end"
+        android:singleLine="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
