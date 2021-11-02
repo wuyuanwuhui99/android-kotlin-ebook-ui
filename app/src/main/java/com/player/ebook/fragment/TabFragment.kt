@@ -47,10 +47,15 @@ class TabFragment : Fragment() {
         return myView
     }
 
+    override fun onHiddenChanged(isVisibleToUser: Boolean){
+        super.setUserVisibleHint(isVisibleToUser)
+        System.out.println("111111111111111111111111111111")
+        System.out.println(isVisibleToUser)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     }
-
 
     /**
      * @author: wuwenqiang
@@ -58,8 +63,7 @@ class TabFragment : Fragment() {
      * @date: 2021-01-25 23:19
      */
     private fun onLazyLoad() {
-
-        var call: Call<ResultEntity> = RequestUtils.getIntanst().findBootList(State.token, classify,pageNum,pageSize)
+        var call: Call<ResultEntity> = RequestUtils.intanst.findBootList(State.token, classify,pageNum,pageSize)
         call.enqueue(object : Callback<ResultEntity> {
             //请求成功时回调
             override fun onResponse(
@@ -121,13 +125,16 @@ class TabFragment : Fragment() {
 
     //界面可见时再加载数据(该方法在onCreate()方法之前执行。)
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
+        super.setUserVisibleHint(isVisibleToUser)
+        System.out.println("=============================================")
         System.out.println(isVisibleToUser)
     }
+
 
     private fun loadMoreData() {
         if (total > courseList.size && loading == false) {
             loading = true
-            var call: Call<ResultEntity> = RequestUtils.getIntanst().findBootList(State.token, classify,pageNum,pageSize)
+            var call: Call<ResultEntity> = RequestUtils.intanst.findBootList(State.token, classify,pageNum,pageSize)
             call.enqueue(object : Callback<ResultEntity> {
                 //请求成功时回调
                 override fun onResponse(

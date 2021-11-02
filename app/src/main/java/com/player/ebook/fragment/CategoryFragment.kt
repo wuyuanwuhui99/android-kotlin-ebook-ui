@@ -47,7 +47,7 @@ class  CategoryFragment : Fragment() {
     }
 
     private fun getCourseData() {
-        var call: Call<ResultEntity> = RequestUtils.getIntanst().findBootList(State.token, classify,0,6)
+        var call: Call<ResultEntity> = RequestUtils.intanst.findBootList(State.token, classify,0,6)
         call.enqueue(object : Callback<ResultEntity> {
             //请求成功时回调
             override fun onResponse(

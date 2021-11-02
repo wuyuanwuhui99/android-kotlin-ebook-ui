@@ -1,19 +1,19 @@
 package com.player.ebook.http
 
-import com.player.ebook.config.API
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Query
+import com.player.ebook.config.Api
 
 interface RequestService {
-    @GET(API.GETUSERDATA)
+    @GET(Api.GETUSERDATA)
     fun getUserData(@Header("Authorization")token:String): Call<ResultEntity>
 
-    @GET(API.FINDALLBYCLASSIFYGROUP)
+    @GET(Api.FINDALLBYCLASSIFYGROUP)
     fun getAllClassify(@Header("Authorization")token:String): Call<ResultEntity>
 
-    @GET(API.FINDBOOLIST)
+    @GET(Api.FINDBOOLIST)
     fun findBootList(
         @Header("Authorization")token:String,
         @Query("classify") classify:String,

@@ -18,4 +18,9 @@ class ClassifyFragment : Fragment() {
         return view
     }
 
+    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
+        super.setUserVisibleHint(isVisibleToUser)
+        System.out.println("=============================================")
+        System.out.println(isVisibleToUser)
+    }
 }

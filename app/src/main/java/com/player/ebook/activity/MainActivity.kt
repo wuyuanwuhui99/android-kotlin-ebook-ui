@@ -52,8 +52,6 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
         initView()//初始化视图
         initEvent()//绑定底部导航栏事件
         setSelect(0)//设置默认选中的tab
-
-
     }
 
     private fun initEvent() {
