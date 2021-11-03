@@ -18,4 +18,8 @@ class BookshelfFragment : Fragment() {
         return view
     }
 
+    fun intiData(){
+        System.out.println("BookshelfFragment")
+    }
+
 }

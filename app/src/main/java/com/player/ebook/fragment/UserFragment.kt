@@ -17,4 +17,8 @@ class UserFragment : Fragment() {
         val view = inflater.inflate(R.layout.user_fragment, container, false)
         return view
     }
+
+    fun initData(){
+        System.out.println("UserFragment")
+    }
 }

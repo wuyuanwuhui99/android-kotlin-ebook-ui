@@ -45,6 +45,11 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
     private var userData: JSONObject? = null//用户数据
     private var token:String? = null
 
+    lateinit var homeFragment:HomeFragment
+    lateinit var classifyFragment:ClassifyFragment
+    lateinit var bookshelfFragment:BookshelfFragment
+    lateinit var userFragment:UserFragment
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -66,9 +71,9 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
 
         //导航栏对应内容区布局
         val homeFragment = HomeFragment()
-        val classifyFragment = ClassifyFragment()
-        val bookshelfFragment = BookshelfFragment()
-        val userFragment = UserFragment()
+        classifyFragment = ClassifyFragment()
+        bookshelfFragment = BookshelfFragment()
+        userFragment = UserFragment()
 
         //导航栏布局栏
         homeLinearLayout = findViewById<View>(R.id.home) as LinearLayout
@@ -133,14 +138,17 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
             1 -> {
                 classifyImg.setImageResource(R.mipmap.icon_classify_active)
                 classifyText.setTextColor(color)
+                classifyFragment.initData()
             }
             2 -> {
                 bookshelfImg.setImageResource(R.mipmap.icon_bookshelf_active)
                 bookshelfText.setTextColor(color)
+                bookshelfFragment.intiData()
             }
             3 -> {
                 userImg.setImageResource(R.mipmap.icon_user_active)
                 userText.setTextColor(color)
+                userFragment.initData()
             }
         }
     }

@@ -22,8 +22,6 @@ import com.youth.banner.adapter.BannerImageAdapter
 import com.youth.banner.holder.BannerImageHolder
 import com.youth.banner.indicator.CircleIndicator
 import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 
 class RecommonFragment : ViewPagerFragment() {
 
@@ -33,7 +31,6 @@ class RecommonFragment : ViewPagerFragment() {
     private lateinit var classifyList: List<Map<*,*>>
     private lateinit var fragmentTransaction:FragmentTransaction
     var loading:Boolean = false
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -121,21 +118,12 @@ class RecommonFragment : ViewPagerFragment() {
         fragmentTransaction.add(R.id.book_category, categoryFragment)
     }
 
-    //事件订阅者
-    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
-    fun onEvent(eventEntity: EventEntity) {
-        if ("loadMoreData".equals(eventEntity.what)) { //classify表示从HomeFragment派发过来的获取用户信息的名称
-            loadMoreData() //加载更多数据
-        }
-    }
-
-
     /**
      * @author: wuwenqiang
      * @description: 容器滚动时做懒加载
      * @date: 2021-01-25 21:24
      */
-    private fun loadMoreData() {
+    fun loadMoreData() {
         if (count < classifyList.size && loading == false) {
             loading = true
             fragmentTransaction = fragmentManager!!.beginTransaction()
@@ -144,15 +132,5 @@ class RecommonFragment : ViewPagerFragment() {
             count++
             loading = false
         }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        EventBus.getDefault().register(this)
-    }
-
-    override fun onStop() {
-        super.onStop()
-        EventBus.getDefault().unregister(this)
     }
 }

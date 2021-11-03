@@ -37,7 +37,8 @@ class HomeFragment : Fragment() {
     private var userData: UserEntity? = null//用户数据
     private var token:String? = null
     private var rootView:View?=null
-
+    private lateinit var viewPagerAdapter:HomePagerAdapter
+    private var position:Int = 0//默认展示首页，下标为0
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -108,7 +109,11 @@ class HomeFragment : Fragment() {
                 val scrollView = (v as ScrollView).getChildAt(0)
                 if (scrollView.measuredHeight <= v.getScrollY() + v.getHeight()) {
                     //加载数据代码
-                    EventBus.getDefault().postSticky(EventEntity(State.classify+"loadMoreData", null))
+                    if(position == 0){
+                        (viewPagerAdapter.myFragment[position] as RecommonFragment).loadMoreData()
+                    }else{
+                        (viewPagerAdapter.myFragment[position] as TabFragment).loadMoreData()
+                    }
                 }
             }
             false
@@ -145,7 +150,7 @@ class HomeFragment : Fragment() {
     private fun initNavView(classifyList: List<Map<*, *>>) {
         val tabLayout: TabLayout = view!!.findViewById(R.id.tablayout)
         val viewPager:WrapContentHeightViewPager = view!!.findViewById(R.id.viewPager)
-        val viewPagerAdapter = HomePagerAdapter(fragmentManager!!, classifyList)
+        viewPagerAdapter = HomePagerAdapter(fragmentManager!!, classifyList)
         viewPager.adapter = viewPagerAdapter
         tabLayout.setupWithViewPager(viewPager)
         tabLayout.addOnTabSelectedListener(object :TabLayout.OnTabSelectedListener{
@@ -156,8 +161,10 @@ class HomeFragment : Fragment() {
 
             }
             override fun onTabSelected(p0: TabLayout.Tab) {
-                State.classify = p0.text as String
-                EventBus.getDefault().postSticky(EventEntity(State.classify, null))
+                if(p0.position !== 0){
+                    position = p0.position
+                    (viewPagerAdapter.myFragment[p0.position] as TabFragment).initData(p0.text as String)
+                }
             }
         })
     }
