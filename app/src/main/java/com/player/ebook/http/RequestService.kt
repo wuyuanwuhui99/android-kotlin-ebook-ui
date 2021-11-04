@@ -10,6 +10,9 @@ interface RequestService {
     @GET(Api.GETUSERDATA)
     fun getUserData(@Header("Authorization")token:String): Call<ResultEntity>
 
+    @GET(Api.GETBANNER)
+    fun getBanner(@Header("Authorization")token:String): Call<ResultEntity>
+
     @GET(Api.FINDALLBYCLASSIFYGROUP)
     fun getAllClassify(@Header("Authorization")token:String): Call<ResultEntity>
 

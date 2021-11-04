@@ -36,7 +36,7 @@ class  CategoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         view.findViewById<TextView>(R.id.category_name).setText(classify)
-        var icon:ImageView = view.findViewById<ImageView>(R.id.icon_category)
+        var icon:ImageView = view.findViewById(R.id.icon_category)
         when(classify){
             "前端" -> icon.setImageResource(R.mipmap.icon_front)
             "后端" -> icon.setImageResource(R.mipmap.icon_backstage)

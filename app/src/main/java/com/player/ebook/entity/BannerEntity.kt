@@ -19,5 +19,5 @@ class BannerEntity {
 
     var isUsed: String? = null
 
-    var rank: Int? = null
+    var sequence: Int? = null
 }
