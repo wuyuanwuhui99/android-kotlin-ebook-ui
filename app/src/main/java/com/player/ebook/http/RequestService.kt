@@ -11,10 +11,10 @@ interface RequestService {
     fun getUserData(@Header("Authorization")token:String): Call<ResultEntity>
 
     @GET(Api.GETBANNER)
-    fun getBanner(@Header("Authorization")token:String): Call<ResultEntity>
+    fun getBanner(): Call<ResultEntity>
 
     @GET(Api.FINDALLBYCLASSIFYGROUP)
-    fun getAllClassify(@Header("Authorization")token:String): Call<ResultEntity>
+    fun getAllClassify(): Call<ResultEntity>
 
     @GET(Api.FINDBOOLIST)
     fun findBootList(

@@ -57,7 +57,7 @@ class RecommonFragment : ViewPagerFragment() {
      * @date: 2021-01-23 14:16
      */
     fun getBannerData() {
-        var call: Call<ResultEntity> = RequestUtils.intanst.getBanner(State.token)
+        var call: Call<ResultEntity> = RequestUtils.intanst.getBanner()
         call.enqueue(object : Callback<ResultEntity> {
             //请求成功时回调
             override fun onResponse(

@@ -121,7 +121,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun getAllClassify() {
-        var call:Call<ResultEntity> = RequestUtils.intanst.getAllClassify(State.token)
+        var call:Call<ResultEntity> = RequestUtils.intanst.getAllClassify()
         call.enqueue(object : Callback<ResultEntity> {
             //请求成功时回调
             override fun onResponse(
@@ -167,13 +167,5 @@ class HomeFragment : Fragment() {
                 }
             }
         })
-    }
-
-    override fun onStart() {
-        super.onStart()
-    }
-
-    override fun onStop() {
-        super.onStop()
     }
 }
