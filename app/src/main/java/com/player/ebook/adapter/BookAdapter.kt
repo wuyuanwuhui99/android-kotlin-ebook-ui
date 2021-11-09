@@ -1,12 +1,16 @@
 package com.player.ebook.adapter
 
 import android.content.Context
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import com.player.ebook.R
+import com.player.ebook.activity.WebViewActivity
 import com.player.ebook.config.Api
 import com.player.ebook.entity.BookEntity
 import com.player.ebook.view.RoundImageView
@@ -46,6 +50,15 @@ class BookAdapter(
         } else {
             viewHolder = convertView.tag as ViewHolder
         }
+        convertView.setOnClickListener{
+            val intent = Intent(context, WebViewActivity::class.java)
+            val bundle = Bundle()
+            // 传参
+            bundle.putString("url",  bookList[position].url)
+            intent.putExtras(bundle)
+            startActivity(context,intent,bundle)
+        }
+
         return convertView
     }
 
